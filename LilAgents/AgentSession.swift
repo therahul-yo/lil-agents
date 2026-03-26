@@ -3,7 +3,7 @@ import Foundation
 // MARK: - Provider
 
 enum AgentProvider: String, CaseIterable {
-    case claude, codex, copilot
+    case claude, codex, copilot, ollama
 
     private static let defaultsKey = "selectedProvider"
 
@@ -22,6 +22,7 @@ enum AgentProvider: String, CaseIterable {
         case .claude:  return "Claude"
         case .codex:   return "Codex"
         case .copilot: return "Copilot"
+        case .ollama:  return "Ollama"
         }
     }
 
@@ -46,6 +47,8 @@ enum AgentProvider: String, CaseIterable {
             return "To install, run this in Terminal:\n  npm install -g @openai/codex"
         case .copilot:
             return "To install, run this in Terminal:\n  brew install copilot-cli\n\nOr: npm install -g @github/copilot-cli"
+        case .ollama:
+            return "To install Ollama, run:\n  brew install ollama\n\nThen start it:\n  ollama serve\n\nPull a model:\n  ollama pull llama3\n\nEndpoint: http://localhost:11434 (default)\nCloud: Set custom endpoint in settings"
         }
     }
 
@@ -54,6 +57,7 @@ enum AgentProvider: String, CaseIterable {
         case .claude:  return ClaudeSession()
         case .codex:   return CodexSession()
         case .copilot: return CopilotSession()
+        case .ollama:  return OllamaSession()
         }
     }
 }
